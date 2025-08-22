@@ -22,7 +22,7 @@ It features a clean neon-style UI, two-player mode, and smart game logic.
 
 Clone the repository and open `index.html` in your browser.
 
-![p](https://keyelty-dev.github.io/X-O-game/)
+![p](https://github.com/keyelty-dev/X-O-game/blob/main/Xo%20.png?raw=true)
 
 
 
