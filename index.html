@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background-color: #1b1b2f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    ._main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    ._main-div {
+        display: flex;
+        flex-wrap: wrap;
+        width: 620px;
+        height: 620px;
+        gap: 10px;
+    }
+
+    ._main-div>span {
+        display: flex;
+        width: 100%;
+        height: 200px;
+        gap: 10px;
+    }
+
+    ._main-div>span>div {
+        width: 200px;
+        height: 100%;
+        border: 2px solid #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 100px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #46007c;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #000 inset;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    ._main-div>span>div.X {
+        color: #00f0ff;
+        text-shadow:
+            0 0 5px #00f0ff,
+            0 0 10px #00f0ff,
+            0 0 20px #00f0ff,
+            0 0 40px #00f0ff;
+    }
+
+    ._main-div>span>div.O {
+        color: #ff00ff;
+        text-shadow:
+            0 0 5px #ff00ff,
+            0 0 10px #ff00ff,
+            0 0 20px #ff00ff,
+            0 0 40px #ff00ff;
+    }
+
+    .blur {
+        filter: blur(5px);
+        pointer-events: none;
+    }
+
+    ._popup {
+        width: 400px;
+        height: 200px;
+        border: 2px solid #fff;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        color: white;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        border-radius: 15px;
+        text-align: center;
+        padding: 20px;
+    }
+
+    @media (max-width: 700px) {
+        ._main-div {
+            width: 300px;
+            height: 300px;
+        }
+
+        ._main-div>span {
+            height: 100px;
+        }
+
+        ._main-div>span>div {
+            width: 100px;
+            height: 100%;
+            font-size: 50px;
+        }
+
+        ._popup {
+            width: 250px;
+            height: 150px;
+            font-size: 20px;
+        }
+    }
+</style>
+
+
+<body>
+    <section class="_main">
+        <div class="_main-div">
+            <span>
+                <div></div>
+                <div></div>
+                <div></div>
+            </span>
+            <span>
+                <div></div>
+                <div></div>
+                <div></div>
+            </span>
+            <span>
+                <div></div>
+                <div></div>
+                <div></div>
+            </span>
+        </div>
+    </section>
+
+</body>
+<script>
+    const _span = document.querySelectorAll('span')
+    const _divs = document.querySelectorAll('._main-div>span>div')
+
+    flag = 0
+    _divs.forEach((div) => {
+        div.addEventListener('click', () => {
+            if (div.innerHTML !== '') return;
+
+            if (flag % 2 == 0) {
+                div.innerHTML = 'X'
+                div.classList.add('X')
+            } else if (flag % 2 == 1) {
+                div.innerHTML = 'O'
+                div.classList.add('O')
+            }
+            flag++
+
+
+            if (_divs[0].innerHTML === "X" && _divs[1].innerHTML === "X" && _divs[2].innerHTML === "X") {
+                popUp('X')
+
+            }
+            else if (_divs[3].innerHTML === "X" && _divs[4].innerHTML === "X" && _divs[5].innerHTML === "X") {
+                popUp('X')
+            }
+            else if (_divs[6].innerHTML === "X" && _divs[7].innerHTML === "X" && _divs[8].innerHTML === "X") {
+                popUp('X')
+            }
+            else if (_divs[0].innerHTML === "X" && _divs[3].innerHTML === "X" && _divs[6].innerHTML === "X") {
+                popUp('X')
+            }
+            else if (_divs[1].innerHTML === "X" && _divs[4].innerHTML === "X" && _divs[7].innerHTML === "X") {
+                popUp('X')
+            }
+            else if (_divs[2].innerHTML === "X" && _divs[5].innerHTML === "X" && _divs[8].innerHTML === "X") {
+                popUp('X')
+            }
+            else if (_divs[0].innerHTML === "X" && _divs[4].innerHTML === "X" && _divs[8].innerHTML === "X") {
+                popUp('X')
+            }
+            else if (_divs[2].innerHTML === "X" && _divs[4].innerHTML === "X" && _divs[6].innerHTML === "X") {
+                popUp('X')
+            }
+            else if ([..._divs].every(div => div.innerHTML !== '')) {
+                popUp('NoOne')
+            }
+
+
+            //////////////////////////////////////////////////////////////////////////////////////////////
+
+            if (_divs[0].innerHTML === "O" && _divs[1].innerHTML === "O" && _divs[2].innerHTML === "O") {
+                popUp("O")
+            }
+            else if (_divs[3].innerHTML === "O" && _divs[4].innerHTML === "O" && _divs[5].innerHTML === "O") {
+                popUp("O")
+            }
+            else if (_divs[6].innerHTML === "O" && _divs[7].innerHTML === "O" && _divs[8].innerHTML === "O") {
+                popUp("O")
+            }
+            else if (_divs[0].innerHTML === "O" && _divs[3].innerHTML === "O" && _divs[6].innerHTML === "O") {
+                popUp("O")
+            }
+            else if (_divs[1].innerHTML === "O" && _divs[4].innerHTML === "O" && _divs[7].innerHTML === "O") {
+                popUp("O")
+            }
+            else if (_divs[2].innerHTML === "O" && _divs[5].innerHTML === "O" && _divs[8].innerHTML === "O") {
+                popUp("O")
+            }
+            else if (_divs[0].innerHTML === "O" && _divs[4].innerHTML === "O" && _divs[8].innerHTML === "O") {
+                popUp("O")
+            }
+            else if (_divs[2].innerHTML === "O" && _divs[4].innerHTML === "O" && _divs[6].innerHTML === "O") {
+                popUp("O")
+            }
+            else if ([..._divs].every(div => div.innerHTML !== '')) {
+                popUp('NoOne')
+            }
+
+
+
+
+        })
+    })
+
+
+
+
+
+    //////////////////////////////////////////////////////
+    function popUp(player) {
+        let _popup = document.createElement('div')
+        let _main = document.querySelector('._main-div')
+        _popup.classList.add('_popup')
+        _popup.textContent = player + ' wins the game!!!!'
+        document.body.appendChild(_popup)
+        _main.classList.add('blur')
+        setTimeout(() => {
+            _divs.forEach((div) => {
+                div.innerHTML = ''
+                div.classList.remove('O')
+                div.classList.remove('X')
+            })
+            _popup.remove()
+            _main.classList.remove('blur')
+
+
+
+
+        }, 3000)
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
