@@ -1,4 +1,4 @@
-<a href="https://keyelty-dev.github.io/X-O-game/"> Online demo</a>
+. <a href="https://keyelty-dev.github.io/X-O-game/"> Online demo</a> .
 
 # 🎮 Tic Tac Toe (X/O)
 
