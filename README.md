@@ -20,6 +20,10 @@ It features a clean neon-style UI, two-player mode, and smart game logic.
 
 ## 🚀 Getting Started
 
-Clone the repository and open `index.html` in your browser:
+Clone the repository and open `index.html` in your browser.
+
+![p](https://keyelty-dev.github.io/X-O-game/)
+
+
 
 
